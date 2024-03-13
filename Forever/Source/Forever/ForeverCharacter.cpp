@@ -3,6 +3,7 @@
 
 #include "ForeverCharacter.h"
 #include "GameFramework/Controller.h"
+#include "InteractableObject.h"
 
 // Sets default values
 AForeverCharacter::AForeverCharacter()
@@ -43,6 +44,7 @@ void AForeverCharacter::Tick(float DeltaTime)
 	if (bHit)
 	{
 		bCanInteract = true;
+		SeenInteractableObject = Cast<AInteractableObject>(Hit.GetActor());
 		UE_LOG(LogTemp, Warning, TEXT("HIT: %f"), GetWorld()->TimeSeconds);
 	}
 	else
@@ -80,11 +82,11 @@ void AForeverCharacter::MoveRight(float AxisValue)
 
 void AForeverCharacter::SwitchShouldInteract()
 {
-	if (bCanInteract)
+	if (bCanInteract && SeenInteractableObject)
 	{
 		//bShouldInteract = !bShouldInteract;
 		
-		// INTERACT
+		SeenInteractableObject->Interact();
 	}
 }
 

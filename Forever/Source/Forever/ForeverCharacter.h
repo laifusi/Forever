@@ -37,6 +37,7 @@ private:
 
 	bool bCanInteract;
 	bool bShouldInteract;
+	class AInteractableObject* SeenInteractableObject;
 
 	void MoveForward(float AxisValue);
 	void MoveRight(float AxisValue);
