@@ -26,8 +26,20 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	UFUNCTION(BlueprintPure)
+	bool GetShouldInteract();
+
 private:
+	UPROPERTY(EditAnywhere)
+	float InteractionRange = 100;
+	UPROPERTY(EditAnywhere)
+	float InteractionRadius = 10;
+
+	bool bCanInteract;
+	bool bShouldInteract;
+
 	void MoveForward(float AxisValue);
 	void MoveRight(float AxisValue);
+	void SwitchShouldInteract();
 
 };
